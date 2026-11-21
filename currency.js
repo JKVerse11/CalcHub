@@ -2,7 +2,10 @@ const CURRENCIES={INR:'₹ INR',USD:'$ USD',EUR:'€ EUR',GBP:'£ GBP',JPY:'¥ J
 const CURRENCY_CODES=Object.keys(CURRENCIES);
 
 function getCurrencyCode(){
-  try{const code=localStorage.getItem('jkcalchub-currency');return CURRENCY_CODES.includes(code)?code:'INR'}catch(_){return'INR'}
+  try{
+    const code=localStorage.getItem('jkcalchub-currency');
+    return CURRENCY_CODES.includes(code)?code:'INR';
+  }catch(_){return'INR'}
 }
 
 function setCurrencyCode(code){
