@@ -9,6 +9,30 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="currency.css">
   <link rel="stylesheet" href="calculator-modern.css">
+  <style>
+    .calc-heading-ad-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 28px;
+    }
+    .calc-heading-ad-layout .modern-calc-heading {
+      max-width: none;
+      margin: 0;
+      align-self: center;
+    }
+    .calc-ad-slot {
+      width: 300px;
+      height: 250px;
+      overflow: hidden;
+    }
+    @media (max-width: 1099px) {
+      .calc-heading-ad-layout { display: block; }
+      .calc-heading-ad-layout .modern-calc-heading { margin: 0 auto 28px; }
+      .calc-ad-slot { display: none; }
+    }
+  </style>
   <script src="currency.js" defer></script>
   <script src="calculator.js" defer></script>
   <script src="currency-refresh.js" defer></script>
@@ -16,13 +40,39 @@
 <body>
   <header class="topbar calc-topbar">
     <a class="brand" href="index.html" aria-label="JKCalcHub home"><span class="brand-icon">JK</span><span>JKCalc<span class="brand-accent">Hub</span></span></a>
-    <div class="header-actions"><label class="currency-picker"><span>Display currency</span><select id="global-currency" aria-label="Choose display currency"><option value="INR">₹ INR — Indian Rupee</option><option value="USD">$ USD — US Dollar</option><option value="EUR">€ EUR — Euro</option><option value="GBP">£ GBP — British Pound</option><option value="JPY">¥ JPY — Japanese Yen</option><option value="AUD">A$ AUD — Australian Dollar</option><option value="CAD">C$ CAD — Canadian Dollar</option><option value="SGD">S$ SGD — Singapore Dollar</option><option value="AED">د.إ AED — UAE Dirham</option></select></label><span class="currency-help">Formatting only; no exchange conversion.</span><a class="header-link" href="index.html#calculators">All calculators</a></div>
+    <div class="header-actions">
+      <label class="currency-picker"><span>Display currency</span><select id="global-currency" aria-label="Choose display currency"><option value="INR">₹ INR — Indian Rupee</option><option value="USD">$ USD — US Dollar</option><option value="EUR">€ EUR — Euro</option><option value="GBP">£ GBP — British Pound</option><option value="JPY">¥ JPY — Japanese Yen</option><option value="AUD">A$ AUD — Australian Dollar</option><option value="CAD">C$ CAD — Canadian Dollar</option><option value="SGD">S$ SGD — Singapore Dollar</option><option value="AED">د.إ AED — UAE Dirham</option></select></label>
+      <span class="currency-help">Formatting only; no exchange conversion.</span>
+      <a class="header-link" href="index.html#calculators">All calculators</a>
+    </div>
   </header>
   <main class="calc-main modern-calc-main">
     <a class="back-link" href="index.html#calculators">← All calculators</a>
-    <section class="calc-heading modern-calc-heading"><div class="tool-icon icon-purple" aria-hidden="true">✦</div><span id="calc-category" class="eyebrow">JKCALCHUB TOOLKIT</span><h1 id="calc-title">Calculator</h1><p id="calc-description" class="calc-description">Choose a calculator and enter your values to see an estimate.</p></section>
+    <div class="calc-heading-ad-layout">
+      <section class="calc-heading modern-calc-heading">
+        <div class="tool-icon icon-purple" aria-hidden="true">✦</div>
+        <span id="calc-category" class="eyebrow">JKCALCHUB TOOLKIT</span>
+        <h1 id="calc-title">Calculator</h1>
+        <p id="calc-description" class="calc-description">Choose a calculator and enter your values to see an estimate.</p>
+      </section>
+      <aside class="calc-ad-slot" aria-label="Advertisement">
+        <script>
+          atOptions = {
+            'key' : '3e5a175940b2899b411acd6d421487ed',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bauval.org/22/3e5a175940b2899b411acd6d421487ed"></script>
+      </aside>
+    </div>
     <div class="calc-layout modern-calc-layout">
-      <section class="calc-panel modern-calc-panel" aria-labelledby="input-title"><div class="panel-intro"><span class="panel-step">YOUR INPUTS</span><h2 class="panel-title" id="input-title">Enter your values</h2><p>Change the sample values to match your question.</p></div><form id="calc-form" novalidate><div class="form-grid" id="form-fields"></div><button class="button button-primary calc-submit" type="submit">Calculate result <span aria-hidden="true">→</span></button></form></section>
+      <section class="calc-panel modern-calc-panel" aria-labelledby="input-title">
+        <div class="panel-intro"><span class="panel-step">YOUR INPUTS</span><h2 class="panel-title" id="input-title">Enter your values</h2><p>Change the sample values to match your question.</p></div>
+        <form id="calc-form" novalidate><div class="form-grid" id="form-fields"></div><button class="button button-primary calc-submit" type="submit">Calculate result <span aria-hidden="true">→</span></button></form>
+      </section>
       <aside class="result-panel modern-result-panel" aria-labelledby="result-title"><span class="panel-step">YOUR ESTIMATE</span><h2 class="panel-title" id="result-title">Result</h2><div id="result-content" class="result-empty" aria-live="polite">Enter values to see a result.</div><p class="result-disclaimer">Estimates are for general information. Verify important decisions with an authoritative source or qualified professional.</p></aside>
     </div>
     <section class="calc-guide"><h2>About this calculator</h2><p id="guide-copy">Results depend on the values and assumptions entered. Check units, rates and applicable rules before using an estimate.</p><a href="disclaimer.html">Read the calculator disclaimer →</a></section>
