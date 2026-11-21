@@ -1,6 +1,67 @@
 /* Currency picker color and clarity improvements. */
 .currency-picker { display:flex; align-items:center; gap:9px; color:#46516a; font-size:12px; font-weight:800; }
-.currency-picker select { min-height:40px; padding:8px 34px 8px 12px; border:1px solid #dcdff5; border-radius:12px; color:#3e43a8; background:linear-gradient(135deg,#fff,#f1efff); font:inherit; font-weight:750; cursor:pointer; box-shadow:0 4px 12px rgba(66,72,160,.07); }
+.currency-picker select { min-height:40px; padding:8px 34px 8px 12px; border:1px solid #dcdff5; border-radius:12px; color:#3e43a8; background:linear-gradient(135deg,#fff,#f1efff); font:inherit; font-weight:800; }
 .currency-picker select:focus-visible { outline:3px solid rgba(83,101,232,.24); border-color:#5866e5; }
 .currency-help { max-width:142px; color:#7b8498; font-size:10px; line-height:1.3; }
 @media(max-width:720px) { .currency-help { display:none; } }
+
+/* Match the calculator page header to the JKCalcHub homepage. */
+.calc-topbar {
+  position:sticky;
+  top:0;
+  z-index:30;
+  min-height:72px;
+  padding:0 max(22px,calc((100vw - 1120px)/2));
+  border-bottom:1px solid rgba(225,229,240,.9);
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(18px);
+}
+.calc-topbar .brand {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:#17243a;
+  font-family:Manrope,'DM Sans',system-ui,sans-serif;
+  font-size:18px;
+  font-weight:800;
+  text-decoration:none;
+}
+.calc-topbar .brand-icon {
+  display:grid;
+  width:38px;
+  height:38px;
+  flex:0 0 38px;
+  place-items:center;
+  border-radius:12px;
+  background:linear-gradient(135deg,#6654d9,#536be7 55%,#31b89b);
+  color:#fff;
+  box-shadow:0 8px 20px rgba(83,101,223,.22);
+  font-size:0;
+}
+.calc-topbar .brand-icon::before { content:'J'; font-size:16px; }
+.calc-topbar .brand > span:last-child::before { content:'JK'; color:#17243a; }
+.calc-topbar .brand-accent { color:#5365df; }
+.calc-topbar .header-actions { gap:12px; }
+.calc-topbar .header-link {
+  display:inline-flex;
+  align-items:center;
+  min-height:38px;
+  padding:8px 13px;
+  border:1px solid #dde3fb;
+  border-radius:11px;
+  background:#f2f4ff;
+  color:#4457ca;
+  font-size:13px;
+  font-weight:800;
+  text-decoration:none;
+}
+.calc-topbar .header-link:hover { background:#e9ecff; border-color:#cdd5fb; }
+@media(max-width:760px) {
+  .calc-topbar { min-height:64px; padding-inline:16px; }
+}
+@media(max-width:500px) {
+  .calc-topbar .brand { gap:8px; font-size:16px; }
+  .calc-topbar .brand-icon { width:34px; height:34px; flex-basis:34px; border-radius:11px; }
+  .calc-topbar .header-actions { gap:8px; }
+  .calc-topbar .header-link { min-height:36px; padding:7px 9px; font-size:12px; }
+}
