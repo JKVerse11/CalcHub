@@ -1,8 +1,19 @@
 /* Calculator directory and homepage interactions. */
+(() => {
+  'use strict';
+
+  // Load the AdSense site script on the homepage for site verification.
+  const adsense = document.createElement('script');
+  adsense.async = true;
+  adsense.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5827365085048112';
+  adsense.crossOrigin = 'anonymous';
+  document.head.append(adsense);
+})();
+
 const HOME_CALCULATORS = [
   { id: 'standard', name: 'Basic Standard Calculator', category: 'everyday', icon: '＋', desc: 'Quick calculations for everyday maths.' },
   { id: 'percentage', name: 'Percentage Calculator', category: 'everyday', icon: '%', desc: 'Find percentages, increases and decreases.' },
-  { id: 'age', name: 'Age Calculator', category: 'everyday', icon: '◷', desc: 'Calculate age in years, months and days.' },
+  { id: 'age', name: 'Age Calculator', category: 'everyday', icon: '◷', desc: 'Calculate age in years, months, and days.' },
   { id: 'date-difference', name: 'Date Difference Calculator', category: 'everyday', icon: '▦', desc: 'Count days between two dates.' },
   { id: 'discount', name: 'Discount Calculator', category: 'everyday', icon: '％', desc: 'See your savings and final sale price.' },
   { id: 'tip', name: 'Tip & Bill Split Calculator', category: 'everyday', icon: '↗', desc: 'Add a tip and split the bill fairly.' },
@@ -50,8 +61,9 @@ function renderDirectory() {
       link.className = 'tool-card';
       link.href = item.href || `calculator.html?id=${encodeURIComponent(item.id)}`;
       link.setAttribute('aria-label', `${item.name}. ${item.desc}`);
-      link.innerHTML = `<span class="tool-icon icon-${item.category}" aria-hidden="true"></span><span class="tool-card-copy"><strong></strong><small></small></span><span class="tool-arrow" aria-hidden="true">↗</span>`;
+      link.innerHTML = '<span class="tool-icon" aria-hidden="true"></span><span class="tool-card-copy"><strong></strong><small></small></span><span class="tool-arrow" aria-hidden="true">↗</span>';
       link.querySelector('.tool-icon').textContent = item.icon;
+      link.querySelector('.tool-icon').classList.add(`icon-${item.category}`);
       link.querySelector('strong').textContent = item.name;
       link.querySelector('small').textContent = item.desc;
       link.style.setProperty('--card-order', index);
