@@ -1,60 +1,21 @@
-/* Homepage polish: distinct, accessible color accents for the calculator directory. */
-:root {
-  --home-ink: #17243a;
-  --home-muted: #65708a;
-  --home-line: #e6e9f1;
-  --home-bg: #f7f8fc;
-  --home-accent: #495ce5;
-}
-
-body { background: var(--home-bg); color: var(--home-ink); }
-.hero { position: relative; }
-.hero-copy { position: relative; z-index: 1; }
-.hero h1 span { color: #5365e8; }
-.hero-card { border-color: #e5e3fb; background: linear-gradient(145deg, #fff 8%, #f0efff 100%); }
-.hero-card .sparkle { color: #ff9a54; }
-.button-primary { box-shadow: 0 9px 22px rgba(66, 91, 232, .2); }
-
-/* Give every calculator tile an individual color identity while keeping contrast high. */
-#tool-grid > a,
-#tool-grid > article {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--tile-border, #e6e9f1);
-  background: linear-gradient(145deg, #fff 0%, var(--tile-bg, #f8f9ff) 100%);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-}
-#tool-grid > a:hover,
-#tool-grid > article:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(37, 48, 93, .10); }
-#tool-grid > a:focus-visible { outline: 3px solid #5365e8; outline-offset: 3px; }
-#tool-grid > :nth-child(8n + 1) { --tile-bg: #f1efff; --tile-border: #ded8ff; --tile-color: #6951d8; }
-#tool-grid > :nth-child(8n + 2) { --tile-bg: #eaf8ff; --tile-border: #cdeeff; --tile-color: #1683b3; }
-#tool-grid > :nth-child(8n + 3) { --tile-bg: #eaf9f2; --tile-border: #cceedd; --tile-color: #18845c; }
-#tool-grid > :nth-child(8n + 4) { --tile-bg: #fff4e8; --tile-border: #ffe2c3; --tile-color: #c86a22; }
-#tool-grid > :nth-child(8n + 5) { --tile-bg: #fff0f2; --tile-border: #ffd9df; --tile-color: #c54c68; }
-#tool-grid > :nth-child(8n + 6) { --tile-bg: #eef4ff; --tile-border: #d7e3ff; --tile-color: #4163c8; }
-#tool-grid > :nth-child(8n + 7) { --tile-bg: #f5f8e9; --tile-border: #e5edc7; --tile-color: #788c26; }
-#tool-grid > :nth-child(8n) { --tile-bg: #fff0e9; --tile-border: #ffddd0; --tile-color: #c65a3b; }
-#tool-grid > :nth-child(n) .tool-icon,
-#tool-grid > :nth-child(n) .icon,
-#tool-grid > :nth-child(n) [class*="icon-"] { color: var(--tile-color, #5365e8); }
-#tool-grid > :nth-child(n) .tool-icon,
-#tool-grid > :nth-child(n) [class*="icon-"] { background-color: var(--tile-bg, #f1efff); }
-
-.editorial-section { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(250px, .7fr); gap: 48px; align-items: center; padding-top: 70px; padding-bottom: 76px; }
-.editorial-copy h2 { max-width: 650px; margin: 0 0 16px; font-size: clamp(28px, 3.2vw, 39px); line-height: 1.2; letter-spacing: -.04em; }
-.editorial-copy p:not(.eyebrow) { max-width: 720px; color: var(--home-muted); }
-.editorial-note { padding: 27px; border: 1px solid #dfe3fb; border-radius: 18px; background: linear-gradient(145deg, #fff, #f0f1ff); }
-.editorial-note .note-icon { display: inline-grid; width: 40px; height: 40px; place-items: center; border-radius: 13px; color: #6654d9; background: #e8e5ff; }
-.editorial-note h3 { margin: 16px 0 7px; font-size: 19px; }
-.editorial-note p { color: var(--home-muted); }
-.editorial-note a { color: #4256d3; font-weight: 700; }
-.about-strip { border-top: 1px solid var(--home-line); }
-.site-footer { background: #fff; }
-
-@media (max-width: 760px) {
-  .editorial-section { grid-template-columns: 1fr; gap: 25px; padding-top: 48px; padding-bottom: 52px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  #tool-grid > a, #tool-grid > article { transition: none; }
-}
+/* Modern accessible calculator cards and search controls. */
+#tool-grid { gap:15px; }
+#tool-grid .tool-card { display:grid; grid-template-columns:48px minmax(0,1fr) 18px; align-items:center; gap:13px; min-height:112px; padding:17px; border:1px solid var(--tile-border,#e6e9f1); border-radius:17px; background:linear-gradient(145deg,#fff,var(--tile-bg,#f8f9ff)); color:#17243a; text-decoration:none; box-shadow:0 5px 18px rgba(37,48,93,.035); transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+#tool-grid .tool-card:hover { transform:translateY(-3px); box-shadow:0 14px 32px rgba(37,48,93,.1); }
+#tool-grid .tool-card:focus-visible { outline:3px solid #5365e8; outline-offset:3px; }
+#tool-grid .tool-icon { display:grid; width:46px; height:46px; place-items:center; border-radius:14px; color:var(--tile-color,#5365e8); background:var(--tile-bg,#f1efff); font-size:21px; font-weight:800; }
+#tool-grid .tool-card-copy { display:grid; gap:4px; }
+#tool-grid .tool-card-copy strong { font-size:14px; line-height:1.35; }
+#tool-grid .tool-card-copy small { color:#737e94; font-size:12px; line-height:1.45; }
+#tool-grid .tool-arrow { color:#8a93a7; font-weight:800; }
+#tool-grid .tool-card:nth-child(8n+1) { --tile-bg:#f1efff;--tile-border:#ded8ff;--tile-color:#6951d8; }
+#tool-grid .tool-card:nth-child(8n+2) { --tile-bg:#eaf8ff;--tile-border:#cdeeff;--tile-color:#1683b3; }
+#tool-grid .tool-card:nth-child(8n+3) { --tile-bg:#eaf9f2;--tile-border:#cceedd;--tile-color:#18845c; }
+#tool-grid .tool-card:nth-child(8n+4) { --tile-bg:#fff4e8;--tile-border:#ffe2c3;--tile-color:#c86a22; }
+#tool-grid .tool-card:nth-child(8n+5) { --tile-bg:#fff0f2;--tile-border:#ffd9df;--tile-color:#c54c68; }
+#tool-grid .tool-card:nth-child(8n+6) { --tile-bg:#eef4ff;--tile-border:#d7e3ff;--tile-color:#4163c8; }
+#tool-grid .tool-card:nth-child(8n+7) { --tile-bg:#f5f8e9;--tile-border:#e5edc7;--tile-color:#788c26; }
+#tool-grid .tool-card:nth-child(8n) { --tile-bg:#fff0e9;--tile-border:#ffddd0;--tile-color:#c65a3b; }
+.search-box input { min-height:48px; border-radius:14px; }
+.filter-btn { min-height:38px; border-radius:999px; }
+@media(prefers-reduced-motion:reduce) { #tool-grid .tool-card { transition:none; } }

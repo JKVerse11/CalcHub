@@ -1,13 +1,78 @@
-const HOME_CALCULATORS=[
-  {id:'standard',name:'Basic standard calculator',category:'everyday',icon:'＋',tone:'purple',desc:'Quick calculations for everyday maths.'},{id:'percentage',name:'Percentage calculator',category:'everyday',icon:'%',tone:'blue',desc:'Find a percentage or compare values.'},{id:'age',name:'Age calculator',category:'everyday',icon:'⌁',tone:'yellow',desc:'Your age in years, months and days.'},{id:'date-difference',name:'Date difference calculator',category:'everyday',icon:'▦',tone:'mint',desc:'Count the time between two dates.'},{id:'discount',name:'Discount calculator',category:'everyday',icon:'％',tone:'rose',desc:'See your savings and final price.'},{id:'tip',name:'Tip & bill split calculator',category:'everyday',icon:'₹',tone:'yellow',desc:'Split a bill fairly, including tip.'},{id:'fuel',name:'Fuel cost & mileage calculator',category:'everyday',icon:'⛽',tone:'peach',desc:'Estimate trip fuel use and cost.'},{id:'unit',name:'Unit converter',category:'everyday',icon:'↔',tone:'blue',desc:'Convert length, weight, temp & area.'},{id:'emi',name:'Loan EMI calculator',category:'finance',icon:'₹',tone:'purple',desc:'Estimate monthly loan payments.'},{id:'sip',name:'SIP calculator',category:'finance',icon:'↗',tone:'mint',desc:'Estimate returns from monthly investing.'},{id:'lumpsum',name:'Lumpsum investment calculator',category:'finance',icon:'◈',tone:'blue',desc:'Project a one-time investment.'},{id:'fd',name:'FD (fixed deposit) calculator',category:'finance',icon:'▣',tone:'yellow',desc:'Estimate fixed deposit maturity.'},{id:'rd',name:'RD (recurring deposit) calculator',category:'finance',icon:'▤',tone:'peach',desc:'Project recurring deposit returns.'},{id:'gst',name:'GST calculator',category:'finance',icon:'%',tone:'rose',desc:'Add or remove GST from an amount.'},{id:'ppf-epf',name:'PPF & EPF calculator',category:'finance',icon:'◌',tone:'mint',desc:'Project yearly savings growth.'},{id:'hra',name:'HRA exemption calculator',category:'finance',icon:'⌂',tone:'purple',desc:'Estimate HRA tax exemption.'},{id:'interest',name:'Simple & compound interest',category:'finance',icon:'∑',tone:'blue',desc:'Compare interest growth over time.'},{id:'inflation',name:'Inflation calculator',category:'finance',icon:'↗',tone:'peach',desc:'Understand future purchasing power.'},{id:'cgpa',name:'CGPA to percentage calculator',category:'student',icon:'A',tone:'blue',desc:'Convert CGPA using your grading scale.'},{id:'sgpa',name:'SGPA to CGPA calculator',category:'student',icon:'▤',tone:'purple',desc:'Combine semester scores into CGPA.'},{id:'attendance',name:'Attendance percentage calculator',category:'student',icon:'✓',tone:'mint',desc:'Check your attendance and classes left.'},{id:'exam',name:'Exam marks & grade calculator',category:'student',icon:'✎',tone:'yellow',desc:'Calculate score percentage and grade.'},{id:'bmi',name:'BMI calculator',category:'health',icon:'♥',tone:'rose',desc:'A quick BMI estimate from height & weight.'},{id:'tdee',name:'Daily calorie (TDEE) & BMR calculator',category:'health',icon:'⚡',tone:'peach',desc:'Estimate daily energy needs.'},{id:'water',name:'Water intake calculator',category:'health',icon:'◉',tone:'blue',desc:'Estimate a daily hydration target.'},{id:'ideal-weight',name:'Ideal weight calculator',category:'health',icon:'↕',tone:'mint',desc:'View a healthy weight range estimate.'},{id:'pregnancy',name:'Pregnancy due date calculator',category:'health',icon:'♡',tone:'rose',desc:'Estimate due date from your last period.'},{id:'profit',name:'Profit margin & markup calculator',category:'business',icon:'↗',tone:'mint',desc:'Understand profit, margin and markup.'},{id:'freelance',name:'Freelance hourly rate calculator',category:'business',icon:'◷',tone:'purple',desc:'Find a rate that meets your income goal.'},{id:'earnings',name:'YouTube / social media earnings calculator',category:'business',icon:'▶',tone:'rose',desc:'Estimate ad revenue from views and RPM.'}
+/* Calculator directory and homepage interactions. */
+const HOME_CALCULATORS = [
+  { id: 'standard', name: 'Basic Standard Calculator', category: 'everyday', icon: '＋', desc: 'Quick calculations for everyday maths.' },
+  { id: 'percentage', name: 'Percentage Calculator', category: 'everyday', icon: '%', desc: 'Find percentages, increases and decreases.' },
+  { id: 'age', name: 'Age Calculator', category: 'everyday', icon: '◷', desc: 'Calculate age in years, months and days.' },
+  { id: 'date-difference', name: 'Date Difference Calculator', category: 'everyday', icon: '▦', desc: 'Count days between two dates.' },
+  { id: 'discount', name: 'Discount Calculator', category: 'everyday', icon: '％', desc: 'See your savings and final sale price.' },
+  { id: 'tip', name: 'Tip & Bill Split Calculator', category: 'everyday', icon: '↗', desc: 'Add a tip and split the bill fairly.' },
+  { id: 'fuel', name: 'Fuel Cost & Mileage Calculator', category: 'everyday', icon: '⌁', desc: 'Estimate trip fuel use and cost.' },
+  { id: 'unit-converter', name: 'Unit Converter', category: 'everyday', icon: '⇄', desc: 'Convert length, weight, temperature and area.' },
+  { id: 'emi', name: 'Loan EMI Calculator', category: 'finance', icon: '▤', desc: 'Estimate monthly payments and loan interest.' },
+  { id: 'sip', name: 'SIP Calculator', category: 'finance', icon: '↗', desc: 'Explore a monthly investment projection.' },
+  { id: 'lumpsum', name: 'Lumpsum Investment Calculator', category: 'finance', icon: '◈', desc: 'Estimate potential growth of a one-time investment.' },
+  { id: 'fd', name: 'FD Calculator', category: 'finance', icon: '▣', desc: 'Estimate fixed deposit maturity value.' },
+  { id: 'rd', name: 'RD Calculator', category: 'finance', icon: '▤', desc: 'Estimate recurring deposit maturity value.' },
+  { id: 'gst', name: 'GST Calculator', category: 'finance', icon: '％', desc: 'Add tax or extract tax from an inclusive price.' },
+  { id: 'ppf-epf', name: 'PPF & EPF Calculator', category: 'finance', icon: '◉', desc: 'Project yearly contributions and interest.' },
+  { id: 'hra', name: 'HRA Exemption Calculator', category: 'finance', icon: '⌂', desc: 'Estimate an HRA exemption under common Indian rules.' },
+  { id: 'interest', name: 'Simple & Compound Interest', category: 'finance', icon: '∑', desc: 'Compare simple and compound interest.' },
+  { id: 'inflation', name: 'Inflation Calculator', category: 'finance', icon: '↗', desc: 'Estimate future cost or purchasing power.' },
+  { id: 'cgpa', name: 'CGPA to Percentage Calculator', category: 'student', icon: 'A', desc: 'Convert CGPA using your chosen scale.' },
+  { id: 'sgpa', name: 'SGPA to CGPA Calculator', category: 'student', icon: '▦', desc: 'Combine semester grades with optional credits.' },
+  { id: 'attendance', name: 'Attendance Percentage Calculator', category: 'student', icon: '✓', desc: 'Check attendance and classes needed to reach a target.' },
+  { id: 'exam', name: 'Exam Marks & Grade Calculator', category: 'student', icon: '✎', desc: 'Calculate percentage and a suggested grade.' },
+  { id: 'bmi', name: 'BMI Calculator', category: 'health', icon: '♡', desc: 'Calculate body mass index from height and weight.' },
+  { id: 'tdee', name: 'Daily Calorie & BMR Calculator', category: 'health', icon: '⚡', desc: 'Estimate BMR and daily energy needs.' },
+  { id: 'water', name: 'Water Intake Calculator', category: 'health', icon: '◌', desc: 'Get a general daily hydration estimate.' },
+  { id: 'ideal-weight', name: 'Ideal Weight Calculator', category: 'health', icon: '♧', desc: 'View a BMI-based reference weight range.' },
+  { id: 'pregnancy', name: 'Pregnancy Due Date Calculator', category: 'health', icon: '♡', desc: 'Estimate a due date from the last menstrual period.' },
+  { id: 'profit', name: 'Profit Margin & Markup Calculator', category: 'business', icon: '↗', desc: 'Understand profit, margin and markup.' },
+  { id: 'freelance', name: 'Freelance Hourly Rate Calculator', category: 'business', icon: '◷', desc: 'Estimate a rate from income and working time.' },
+  { id: 'earnings', name: 'YouTube & Social Media Earnings Calculator', category: 'business', icon: '▶', desc: 'Estimate revenue from views and RPM.' }
 ];
 
-document.addEventListener('DOMContentLoaded',()=>{
-  const grid=document.querySelector('#tool-grid'),search=document.querySelector('#search'),count=document.querySelector('#result-count'),empty=document.querySelector('#empty-state');
-  if(grid){let filter='all';const render=()=>{const q=(search.value||'').trim().toLowerCase();const found=HOME_CALCULATORS.filter(c=>(filter==='all'||c.category===filter)&&(!q||(c.name+' '+c.desc).toLowerCase().includes(q)));grid.innerHTML=found.map(c=>`<a class="tool-card" href="calculator.html?id=${encodeURIComponent(c.id)}"><span class="tool-icon icon-${c.tone}">${c.icon}</span><span class="tool-arrow">↗</span><strong>${c.name}</strong><small>${c.desc}</small></a>`).join('');count.textContent=`Showing ${found.length===HOME_CALCULATORS.length?'all ':''}${found.length} calculator${found.length===1?'':'s'}`;empty.hidden=found.length!==0;grid.hidden=found.length===0};document.querySelectorAll('.filter-chip').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;document.querySelectorAll('.filter-chip').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});render()}));search.addEventListener('input',render);document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();search.focus()}});render()}
+function renderDirectory() {
+  const grid = document.querySelector('#tool-grid');
+  if (!grid) return;
+  const search = document.querySelector('#search');
+  const count = document.querySelector('#result-count');
+  const empty = document.querySelector('#empty-state');
+  const filters = [...document.querySelectorAll('[data-filter]')];
+  let selected = 'all';
 
-  const currencySelect=document.querySelector('#global-currency');if(currencySelect){const saved=localStorage.getItem('jkcalchub-currency')||'INR';currencySelect.value=['INR','USD','EUR','GBP','JPY','AUD','CAD','SGD','AED'].includes(saved)?saved:'INR';currencySelect.addEventListener('change',()=>{localStorage.setItem('jkcalchub-currency',currencySelect.value);document.dispatchEvent(new CustomEvent('currencychange',{detail:{currency:currencySelect.value}}))})}
+  function draw() {
+    const query = (search?.value || '').trim().toLocaleLowerCase();
+    const items = HOME_CALCULATORS.filter(item => (selected === 'all' || item.category === selected) && (!query || `${item.name} ${item.desc} ${item.category}`.toLocaleLowerCase().includes(query)));
+    grid.replaceChildren(...items.map((item, index) => {
+      const link = document.createElement('a');
+      link.className = 'tool-card';
+      link.href = `calculator.html?id=${encodeURIComponent(item.id)}`;
+      link.setAttribute('aria-label', `${item.name}. ${item.desc}`);
+      link.innerHTML = `<span class="tool-icon icon-${item.category}" aria-hidden="true"></span><span class="tool-card-copy"><strong></strong><small></small></span><span class="tool-arrow" aria-hidden="true">↗</span>`;
+      link.querySelector('.tool-icon').textContent = item.icon;
+      link.querySelector('strong').textContent = item.name;
+      link.querySelector('small').textContent = item.desc;
+      link.style.setProperty('--card-order', index);
+      return link;
+    }));
+    if (count) count.textContent = String(items.length);
+    if (empty) empty.hidden = items.length > 0;
+  }
+  search?.addEventListener('input', draw);
+  filters.forEach(button => button.addEventListener('click', () => {
+    selected = button.dataset.filter || 'all';
+    filters.forEach(filter => {
+      const active = filter === button;
+      filter.classList.toggle('is-active', active);
+      filter.setAttribute('aria-pressed', String(active));
+    });
+    draw();
+  }));
+  draw();
+}
 
-  document.querySelectorAll('[data-year]').forEach(n=>n.textContent=new Date().getFullYear());
-  const display=document.querySelector('#quick-display'),keys=document.querySelector('#quick-grid'),clear=document.querySelector('#quick-clear');if(display&&keys){let expression='';const update=v=>display.value=v||'0';const solve=()=>{if(!expression)return;try{if(!/^[0-9+*/().%]+$/.test(expression))throw 0;let normalized=expression.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)'),answer=Function('"use strict";return ('+normalized+')')();if(!Number.isFinite(answer))throw 0;expression=String(Number(answer.toPrecision(12)));update(expression)}catch(e){expression='';update('Error')}};keys.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.action==='clear'){expression='';update('0')}else if(b.dataset.action==='back'){expression=expression.slice(0,-1);update(expression)}else if(b.dataset.action==='equals')solve();else if(b.dataset.value){if(display.value==='Error')expression='';expression+=b.dataset.value;update(expression)}});clear?.addEventListener('click',()=>{expression='';update('0')})}
+document.addEventListener('DOMContentLoaded', () => {
+  renderDirectory();
+  document.querySelectorAll('[data-year]').forEach(node => { node.textContent = String(new Date().getFullYear()); });
 });

@@ -1,5 +1,2 @@
-const CATALOG_LINK_OVERRIDES={standard:'calculator.html?id=standard'};
-
-function openStandardCalculator(){
-  window.location.href=CATALOG_LINK_OVERRIDES.standard;
-}
+/* Kept as a tiny compatibility shim for any older page links. */
+function openStandardCalculator(){ window.location.href='calculator.html?id=standard'; }
