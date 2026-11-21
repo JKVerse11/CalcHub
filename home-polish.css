@@ -1,21 +1,30 @@
-/* Modern accessible calculator cards and search controls. */
-#tool-grid { gap:15px; }
-#tool-grid .tool-card { display:grid; grid-template-columns:48px minmax(0,1fr) 18px; align-items:center; gap:13px; min-height:112px; padding:17px; border:1px solid var(--tile-border,#e6e9f1); border-radius:17px; background:linear-gradient(145deg,#fff,var(--tile-bg,#f8f9ff)); color:#17243a; text-decoration:none; box-shadow:0 5px 18px rgba(37,48,93,.035); transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
-#tool-grid .tool-card:hover { transform:translateY(-3px); box-shadow:0 14px 32px rgba(37,48,93,.1); }
-#tool-grid .tool-card:focus-visible { outline:3px solid #5365e8; outline-offset:3px; }
-#tool-grid .tool-icon { display:grid; width:46px; height:46px; place-items:center; border-radius:14px; color:var(--tile-color,#5365e8); background:var(--tile-bg,#f1efff); font-size:21px; font-weight:800; }
-#tool-grid .tool-card-copy { display:grid; gap:4px; }
-#tool-grid .tool-card-copy strong { font-size:14px; line-height:1.35; }
-#tool-grid .tool-card-copy small { color:#737e94; font-size:12px; line-height:1.45; }
-#tool-grid .tool-arrow { color:#8a93a7; font-weight:800; }
-#tool-grid .tool-card:nth-child(8n+1) { --tile-bg:#f1efff;--tile-border:#ded8ff;--tile-color:#6951d8; }
-#tool-grid .tool-card:nth-child(8n+2) { --tile-bg:#eaf8ff;--tile-border:#cdeeff;--tile-color:#1683b3; }
-#tool-grid .tool-card:nth-child(8n+3) { --tile-bg:#eaf9f2;--tile-border:#cceedd;--tile-color:#18845c; }
-#tool-grid .tool-card:nth-child(8n+4) { --tile-bg:#fff4e8;--tile-border:#ffe2c3;--tile-color:#c86a22; }
-#tool-grid .tool-card:nth-child(8n+5) { --tile-bg:#fff0f2;--tile-border:#ffd9df;--tile-color:#c54c68; }
-#tool-grid .tool-card:nth-child(8n+6) { --tile-bg:#eef4ff;--tile-border:#d7e3ff;--tile-color:#4163c8; }
-#tool-grid .tool-card:nth-child(8n+7) { --tile-bg:#f5f8e9;--tile-border:#e5edc7;--tile-color:#788c26; }
-#tool-grid .tool-card:nth-child(8n) { --tile-bg:#fff0e9;--tile-border:#ffddd0;--tile-color:#c65a3b; }
-.search-box input { min-height:48px; border-radius:14px; }
-.filter-btn { min-height:38px; border-radius:999px; }
-@media(prefers-reduced-motion:reduce) { #tool-grid .tool-card { transition:none; } }
+/* Put the calculator directory first: useful tools are visible as soon as the homepage opens. */
+.directory { padding-top: 30px; padding-bottom: 48px; }
+.directory .section-heading { align-items: center; margin-bottom: 20px; }
+.directory .section-heading h1 { margin: 0; color: #17243a; font-family: Manrope, 'DM Sans', system-ui, sans-serif; font-size: clamp(29px, 4vw, 43px); line-height: 1.12; letter-spacing: -.045em; }
+.directory .section-intro { margin: 9px 0 0; }
+.directory .directory-controls { gap: 14px; margin-bottom: 20px; }
+.directory .tool-count { min-width: 100px; padding: 12px 16px; border: 1px solid #e6e9f1; border-radius: 16px; background: #fff; }
+.directory .tool-count strong { color: #4b55c7; }
+.directory .tool-grid { min-height: 112px; }
+.directory .tool-card { animation: card-enter .28s both; animation-delay: calc(min(var(--card-order, 0), 12) * 18ms); }
+.no-script-note { margin: 14px 0 0; color: #667085; font-size: 13px; }
+.hero { padding-top: 36px; padding-bottom: 48px; }
+@keyframes card-enter { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 620px) {
+  .directory { padding-top: 23px; padding-bottom: 35px; }
+  .directory .section-heading { align-items: flex-start; }
+  .directory .tool-count { min-width: 75px; padding: 8px 10px; }
+  .directory .tool-count span { font-size: 10px; }
+  .directory .directory-controls { gap: 11px; }
+  .directory .filters { flex-wrap: nowrap; max-width: 100%; overflow-x: auto; padding: 2px 2px 7px; }
+  .directory .filters button { flex: 0 0 auto; }
+  #tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  #tool-grid .tool-card { grid-template-columns: 38px minmax(0, 1fr); gap: 9px; min-height: 102px; padding: 11px; }
+  #tool-grid .tool-icon { width: 36px; height: 36px; font-size: 17px; }
+  #tool-grid .tool-card-copy strong { font-size: 12px; }
+  #tool-grid .tool-card-copy small { font-size: 10px; }
+  #tool-grid .tool-arrow { display: none; }
+  .hero { padding-top: 32px; }
+}
+@media (prefers-reduced-motion: reduce) { .directory .tool-card { animation: none; } }
