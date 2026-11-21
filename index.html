@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f8fc">
-  <meta name="description" content="Fast, free everyday calculators. Calculate loan EMI, SIP returns, GST, percentages, age, and BMI with DailyCalc.">
-  <title>DailyCalc — Everyday calculations, made simple</title>
+  <meta name="description" content="Fast, free everyday and scientific calculators on Calquik.">
+  <title>Calquik — Everyday calculators</title>
   <link rel="stylesheet" href="styles.css">
   <script src="home.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="DailyCalc home"><span class="brand-mark">d</span> DailyCalc</a>
+    <a class="brand" href="index.html" aria-label="Calquik home"><span class="brand-mark">C</span> Calquik</a>
     <span class="header-note">Simple tools for everyday decisions</span>
   </header>
   <main class="home-main">
@@ -23,36 +23,27 @@
     </section>
 
     <section class="tools-section" aria-labelledby="tools-title">
-      <div class="section-heading"><div><span class="eyebrow">Your everyday toolkit</span><h2 id="tools-title">Explore calculators</h2></div><span id="result-count" class="result-count">6 calculators</span></div>
+      <div class="section-heading"><div><span class="eyebrow">Your everyday toolkit</span><h2 id="tools-title">Explore calculators</h2></div><span id="result-count" class="result-count">8 calculators</span></div>
       <div class="filters" role="group" aria-label="Filter calculators by category">
         <button class="filter-chip active" data-filter="all" aria-pressed="true">All tools</button>
+        <button class="filter-chip" data-filter="basic" aria-pressed="false">Basic</button>
         <button class="filter-chip" data-filter="finance" aria-pressed="false">Finance</button>
         <button class="filter-chip" data-filter="everyday" aria-pressed="false">Everyday</button>
         <button class="filter-chip" data-filter="health" aria-pressed="false">Health</button>
       </div>
       <div class="tool-grid" id="tool-grid">
-        <a class="tool-card" href="loan-emi.html" data-category="finance" data-search="loan emi monthly installment interest finance home car">
-          <span class="tool-icon lavender">₹</span><span class="tool-category">FINANCE</span><h3>Loan EMI Calculator</h3><p>Estimate your monthly payment and total loan cost.</p><span class="card-link">Calculate EMI <span aria-hidden="true">→</span></span>
-        </a>
-        <a class="tool-card" href="sip.html" data-category="finance" data-search="sip investment mutual fund returns wealth finance">
-          <span class="tool-icon mint">↗</span><span class="tool-category">FINANCE</span><h3>SIP Calculator</h3><p>See how regular monthly investments could grow.</p><span class="card-link">Estimate returns <span aria-hidden="true">→</span></span>
-        </a>
-        <a class="tool-card" href="gst.html" data-category="finance" data-search="gst goods services tax add remove tax inclusive exclusive">
-          <span class="tool-icon peach">%</span><span class="tool-category">FINANCE</span><h3>GST Calculator</h3><p>Quickly add or remove GST from an amount.</p><span class="card-link">Calculate GST <span aria-hidden="true">→</span></span>
-        </a>
-        <a class="tool-card" href="percentage.html" data-category="everyday" data-search="percentage percent of calculate everyday">
-          <span class="tool-icon sky">％</span><span class="tool-category">EVERYDAY</span><h3>Percentage Calculator</h3><p>Find a percentage of any number in seconds.</p><span class="card-link">Find a percentage <span aria-hidden="true">→</span></span>
-        </a>
-        <a class="tool-card" href="age.html" data-category="everyday" data-search="age date of birth birthday years months days">
-          <span class="tool-icon butter">⌁</span><span class="tool-category">EVERYDAY</span><h3>Age Calculator</h3><p>Find your age in years, months, and days.</p><span class="card-link">Calculate your age <span aria-hidden="true">→</span></span>
-        </a>
-        <a class="tool-card" href="bmi.html" data-category="health" data-search="bmi body mass index weight height health">
-          <span class="tool-icon rose">♥</span><span class="tool-category">HEALTH</span><h3>BMI Calculator</h3><p>Check your body mass index from height and weight.</p><span class="card-link">Check your BMI <span aria-hidden="true">→</span></span>
-        </a>
+        <a class="tool-card" href="normal-calculator.html" data-category="basic" data-search="normal basic standard calculator arithmetic plus minus multiply divide"><span class="tool-icon lavender">=</span><span class="tool-category">BASIC</span><h3>Normal Calculator</h3><p>Perform everyday arithmetic with a clean calculator.</p><span class="card-link">Open calculator <span aria-hidden="true">→</span></span></a>
+        <a class="tool-card" href="scientific-calculator.html" data-category="basic" data-search="scientific calculator trig sin cos tan log power square square root pi e factorial percent"><span class="tool-icon sky">ƒ</span><span class="tool-category">SCIENTIFIC</span><h3>Scientific Calculator</h3><p>Work with powers, roots, logarithms, constants, and trigonometry.</p><span class="card-link">Open calculator <span aria-hidden="true">→</span></span></a>
+        <a class="tool-card" href="loan-emi.html" data-category="finance" data-search="loan emi monthly installment interest finance home car"><span class="tool-icon lavender">₹</span><span class="tool-category">FINANCE</span><h3>Loan EMI Calculator</h3><p>Estimate your monthly payment and total loan cost.</p><span class="card-link">Calculate EMI <span aria-hidden="true">→</span></span></a>
+        <a class="tool-card" href="sip.html" data-category="finance" data-search="sip investment mutual fund returns wealth finance"><span class="tool-icon mint">↗</span><span class="tool-category">FINANCE</span><h3>SIP Calculator</h3><p>See how regular monthly investments could grow.</p><span class="card-link">Estimate returns <span aria-hidden="true">→</span></span></a>
+        <a class="tool-card" href="gst.html" data-category="finance" data-search="gst goods services tax add remove tax inclusive exclusive"><span class="tool-icon peach">%</span><span class="tool-category">FINANCE</span><h3>GST Calculator</h3><p>Quickly add or remove GST from an amount.</p><span class="card-link">Calculate GST <span aria-hidden="true">→</span></span></a>
+        <a class="tool-card" href="percentage.html" data-category="everyday" data-search="percentage percent of calculate everyday"><span class="tool-icon sky">％</span><span class="tool-category">EVERYDAY</span><h3>Percentage Calculator</h3><p>Find a percentage of any number in seconds.</p><span class="card-link">Find a percentage <span aria-hidden="true">→</span></span></a>
+        <a class="tool-card" href="age.html" data-category="everyday" data-search="age date of birth birthday years months days"><span class="tool-icon butter">⌁</span><span class="tool-category">EVERYDAY</span><h3>Age Calculator</h3><p>Find your age in years, months, and days.</p><span class="card-link">Calculate your age <span aria-hidden="true">→</span></span></a>
+        <a class="tool-card" href="bmi.html" data-category="health" data-search="bmi body mass index weight height health"><span class="tool-icon rose">♥</span><span class="tool-category">HEALTH</span><h3>BMI Calculator</h3><p>Check your body mass index from height and weight.</p><span class="card-link">Check your BMI <span aria-hidden="true">→</span></span></a>
       </div>
       <p id="empty-state" class="empty-state" hidden>No calculators found. Try another search.</p>
     </section>
   </main>
-  <footer class="site-footer"><a class="brand" href="index.html"><span class="brand-mark">d</span> DailyCalc</a><nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy Policy</a></nav><span>© <span data-year></span> DailyCalc. For informational use.</span></footer>
+  <footer class="site-footer"><a class="brand" href="index.html"><span class="brand-mark">C</span> Calquik</a><nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact Us</a><a href="privacy.html">Privacy Policy</a></nav><span>© <span data-year></span> Calquik. For informational use.</span></footer>
 </body>
 </html>
