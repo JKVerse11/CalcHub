@@ -18,6 +18,7 @@ const HOME_CALCULATORS = [
   { id: 'hra', name: 'HRA Exemption Calculator', category: 'finance', icon: '⌂', desc: 'Estimate an HRA exemption under common Indian rules.' },
   { id: 'interest', name: 'Simple & Compound Interest', category: 'finance', icon: '∑', desc: 'Compare simple and compound interest.' },
   { id: 'inflation', name: 'Inflation Calculator', category: 'finance', icon: '↗', desc: 'Estimate future cost or purchasing power.' },
+  { id: 'gold-silver', name: 'Gold & Silver Purchase Calculator', category: 'finance', icon: '◆', desc: 'Estimate 24K, 22K, 18K gold and silver prices in local currency.', href: 'gold-calculator.html' },
   { id: 'cgpa', name: 'CGPA to Percentage Calculator', category: 'student', icon: 'A', desc: 'Convert CGPA using your chosen scale.' },
   { id: 'sgpa', name: 'SGPA to CGPA Calculator', category: 'student', icon: '▦', desc: 'Combine semester grades with optional credits.' },
   { id: 'attendance', name: 'Attendance Percentage Calculator', category: 'student', icon: '✓', desc: 'Check attendance and classes needed to reach a target.' },
@@ -47,7 +48,7 @@ function renderDirectory() {
     grid.replaceChildren(...items.map((item, index) => {
       const link = document.createElement('a');
       link.className = 'tool-card';
-      link.href = `calculator.html?id=${encodeURIComponent(item.id)}`;
+      link.href = item.href || `calculator.html?id=${encodeURIComponent(item.id)}`;
       link.setAttribute('aria-label', `${item.name}. ${item.desc}`);
       link.innerHTML = `<span class="tool-icon icon-${item.category}" aria-hidden="true"></span><span class="tool-card-copy"><strong></strong><small></small></span><span class="tool-arrow" aria-hidden="true">↗</span>`;
       link.querySelector('.tool-icon').textContent = item.icon;
