@@ -1,16 +1,16 @@
-# DailyCalc
+# JKCalcHub
 
-A fast, responsive calculator website built with plain HTML, CSS, and JavaScript.
-
-## Pages
-- `index.html` — searchable calculator directory with category filters.
-- `loan-emi.html`, `sip.html`, `gst.html`, `percentage.html`, `age.html`, `bmi.html` — live calculators with reset controls, ad placeholders, usage guides, formulas, and FAQs.
-- `about.html`, `contact.html`, `privacy.html` — informational and footer pages.
+A clean, responsive collection of 30 practical calculators built with plain HTML, CSS and JavaScript. No build tools or third-party JavaScript dependencies are needed.
 
 ## Run locally
-Open `index.html` in a browser or serve this directory with any static web server. The calculators require no build step or external JavaScript libraries. The stylesheet imports optional Google Fonts; system fonts are used as fallbacks.
+Open `index.html` in a browser, or serve this folder with any static web server. The homepage supports category filters and live search. Calculator pages open through `calculator.html?id=...` and calculate in the browser.
 
-## Before publishing
-- Replace the placeholder contact email in `contact.html`.
-- Review and customize `privacy.html` to match the actual host, analytics, advertising, and legal requirements. Ad areas are placeholders; no advertising provider is configured.
-- Results are informational estimates, not professional financial, tax, or medical advice.
+## Calculator categories
+- Simple & everyday: standard maths, percentage, age, date difference, discount, tip and bill split, fuel, and unit conversion.
+- Finance & tax: loan EMI, SIP, lumpsum, FD, RD, GST, PPF/EPF, HRA, interest, and inflation.
+- Student & academic: CGPA, SGPA, attendance, and exam marks/grade.
+- Health & fitness: BMI, TDEE/BMR, water intake, ideal weight, and pregnancy due date.
+- Business & creator: profit margin/markup, freelance hourly rate, and social media earnings.
+
+## Notes
+All calculators provide general estimates only. Financial and tax calculations may vary by product and local rules; health outputs are not medical advice. Verify important decisions with a qualified professional. Currency output uses USD by default except where a currency selector is provided.

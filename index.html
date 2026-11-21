@@ -3,38 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8fc">
-  <meta name="description" content="Simple, free calculators for everyday maths, money, health and daily decisions.">
-  <title>CalcHub — Simple everyday calculators</title>
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="description" content="Thirty simple, free calculators for everyday life, money, study, health and work.">
+  <title>JKCalcHub — simple calculators for everyday life</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="home.js" defer></script>
 </head>
 <body>
-  <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">C</span> CalcHub</a><span class="header-note">Simple tools for everyday decisions</span></header>
-  <main class="home-main">
-    <section class="hero"><span class="eyebrow">A little clarity goes a long way</span><h1>What do you need to <span>calculate?</span></h1><p>Choose a calculator, enter a few numbers, and get a clear answer—no search needed.</p></section>
-    <section class="tools-section" aria-labelledby="tools-title">
-      <div class="section-heading"><div><span class="eyebrow">Your everyday toolkit</span><h2 id="tools-title">Explore calculators</h2></div><span id="result-count" class="result-count">14 calculators</span></div>
-      <div class="filters" role="group" aria-label="Filter calculators by category">
-        <button class="filter-chip active" data-filter="all" aria-pressed="true">All tools</button><button class="filter-chip" data-filter="basic" aria-pressed="false">Basic &amp; science</button><button class="filter-chip" data-filter="finance" aria-pressed="false">Money</button><button class="filter-chip" data-filter="everyday" aria-pressed="false">Everyday</button><button class="filter-chip" data-filter="health" aria-pressed="false">Health</button>
-      </div>
-      <div class="tool-grid" id="tool-grid">
-        <a class="tool-card" href="normal-calculator.html" data-category="basic"><span class="tool-icon lavender">＋</span><span class="tool-category">BASIC</span><strong>Standard calculator</strong><span class="tool-description">Add, subtract, multiply and divide.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="scientific-calculator.html" data-category="basic"><span class="tool-icon sky">π</span><span class="tool-category">BASIC</span><strong>Scientific calculator</strong><span class="tool-description">Powers, roots, trigonometry and more.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="loan-emi.html" data-category="finance"><span class="tool-icon lavender">₹</span><span class="tool-category">MONEY</span><strong>Loan EMI</strong><span class="tool-description">Estimate monthly payments and interest.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="sip.html" data-category="finance"><span class="tool-icon mint">↗</span><span class="tool-category">MONEY</span><strong>SIP investment</strong><span class="tool-description">Estimate the future value of monthly investing.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="gst.html" data-category="finance"><span class="tool-icon peach">%</span><span class="tool-category">MONEY</span><strong>GST</strong><span class="tool-description">Add tax to a price or find tax in a total.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="discount.html" data-category="finance"><span class="tool-icon rose">%</span><span class="tool-category">MONEY</span><strong>Discount</strong><span class="tool-description">See your savings and final sale price.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="tip.html" data-category="finance"><span class="tool-icon butter">₹</span><span class="tool-category">MONEY</span><strong>Tip &amp; bill split</strong><span class="tool-description">Work out a tip and split the bill fairly.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="percentage.html" data-category="everyday"><span class="tool-icon sky">％</span><span class="tool-category">EVERYDAY</span><strong>Percentage</strong><span class="tool-description">Find a percentage of any number.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="age.html" data-category="everyday"><span class="tool-icon butter">⌁</span><span class="tool-category">EVERYDAY</span><strong>Age</strong><span class="tool-description">Calculate age in years, months and days.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="date-difference.html" data-category="everyday"><span class="tool-icon mint">▦</span><span class="tool-category">EVERYDAY</span><strong>Date difference</strong><span class="tool-description">Count the days between two dates.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="unit-converter.html" data-category="everyday"><span class="tool-icon peach">↔</span><span class="tool-category">EVERYDAY</span><strong>Unit converter</strong><span class="tool-description">Convert length, weight and temperature.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="fuel.html" data-category="everyday"><span class="tool-icon lavender">⛽</span><span class="tool-category">EVERYDAY</span><strong>Fuel cost</strong><span class="tool-description">Estimate trip fuel use and its cost.</span><span class="card-link">Open calculator →</span></a>
-        <a class="tool-card" href="bmi.html" data-category="health"><span class="tool-icon rose">♥</span><span class="tool-category">HEALTH</span><strong>BMI</strong><span class="tool-description">Check body mass index as a general guide.</span><span class="card-link">Open calculator →</span></a>
-      </div>
+  <header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">JK</span><span>JKCalc<span class="brand-accent">Hub</span></span></a><a class="header-link" href="#calculators">Explore calculators <span aria-hidden="true">↘</span></a></header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy"><span class="eyebrow"><span class="eyebrow-dot"></span> YOUR EVERYDAY TOOLKIT</span><h1>Make the numbers<br>make <span class="highlight">sense.</span></h1><p>Quick, clear answers for everyday decisions. Pick a calculator, enter a few details, and you’re done.</p><a class="hero-button" href="#calculators">Find your calculator <span aria-hidden="true">→</span></a><div class="trust-note"><span class="trust-icon">✓</span> Free to use · No sign-up · Instant results</div></div>
+      <div class="hero-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-card"><div class="art-card-top"><span>QUICK MATH</span><span class="art-dots">•••</span></div><div class="art-expression">24 <span>×</span> 18</div><div class="art-rule"></div><div class="art-result-label">YOUR RESULT</div><div class="art-result">432<span>.00</span></div><div class="art-chip">✓ &nbsp;That was easy</div></div><span class="float-badge badge-percent">%</span><span class="float-badge badge-plus">＋</span><span class="float-badge badge-chart">↗</span></div>
     </section>
+    <section class="directory" id="calculators">
+      <div class="section-title"><div><span class="eyebrow">A CALCULATOR FOR THAT</span><h2>Explore all calculators</h2><p>Simple tools, helpful answers. Choose a category or search by name.</p></div><div class="total-pill"><span>30</span> useful tools</div></div>
+      <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search calculators..." autocomplete="off" aria-label="Search calculators"><kbd>/</kbd></label>
+      <div class="filters" role="group" aria-label="Filter by category"><button class="filter-chip active" data-filter="all" aria-pressed="true">All <span>30</span></button><button class="filter-chip" data-filter="everyday" aria-pressed="false">Simple &amp; everyday</button><button class="filter-chip" data-filter="finance" aria-pressed="false">Finance &amp; tax</button><button class="filter-chip" data-filter="student" aria-pressed="false">Student &amp; academic</button><button class="filter-chip" data-filter="health" aria-pressed="false">Health &amp; fitness</button><button class="filter-chip" data-filter="business" aria-pressed="false">Business &amp; creator</button></div>
+      <p class="result-count" id="result-count" aria-live="polite">Showing all 30 calculators</p><div class="tool-grid" id="tool-grid"></div><div class="empty-state" id="empty-state" hidden>No calculators found. Try another search.</div>
+    </section>
+    <section class="bottom-callout"><div class="callout-mark">✳</div><div><h2>Good decisions start with clarity.</h2><p>JKCalcHub makes the little calculations in life feel a little easier.</p></div><a href="#calculators">Browse tools <span>→</span></a></section>
   </main>
-  <footer class="site-footer"><a class="brand" href="index.html"><span class="brand-mark">C</span> CalcHub</a><nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></nav><span>© <span data-year></span> CalcHub</span></footer>
+  <footer class="footer"><a class="brand" href="index.html"><span class="brand-icon">JK</span><span>JKCalc<span class="brand-accent">Hub</span></span></a><span>Useful answers, without the fuss.</span><span>© <span data-year></span> JKCalcHub</span></footer>
 </body>
 </html>
