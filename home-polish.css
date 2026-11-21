@@ -1,30 +1,13 @@
-/* Put the calculator directory first: useful tools are visible as soon as the homepage opens. */
-.directory { padding-top: 30px; padding-bottom: 48px; }
-.directory .section-heading { align-items: center; margin-bottom: 20px; }
-.directory .section-heading h1 { margin: 0; color: #17243a; font-family: Manrope, 'DM Sans', system-ui, sans-serif; font-size: clamp(29px, 4vw, 43px); line-height: 1.12; letter-spacing: -.045em; }
-.directory .section-intro { margin: 9px 0 0; }
-.directory .directory-controls { gap: 14px; margin-bottom: 20px; }
-.directory .tool-count { min-width: 100px; padding: 12px 16px; border: 1px solid #e6e9f1; border-radius: 16px; background: #fff; }
-.directory .tool-count strong { color: #4b55c7; }
-.directory .tool-grid { min-height: 112px; }
-.directory .tool-card { animation: card-enter .28s both; animation-delay: calc(min(var(--card-order, 0), 12) * 18ms); }
-.no-script-note { margin: 14px 0 0; color: #667085; font-size: 13px; }
-.hero { padding-top: 36px; padding-bottom: 48px; }
-@keyframes card-enter { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
-@media (max-width: 620px) {
-  .directory { padding-top: 23px; padding-bottom: 35px; }
-  .directory .section-heading { align-items: flex-start; }
-  .directory .tool-count { min-width: 75px; padding: 8px 10px; }
-  .directory .tool-count span { font-size: 10px; }
-  .directory .directory-controls { gap: 11px; }
-  .directory .filters { flex-wrap: nowrap; max-width: 100%; overflow-x: auto; padding: 2px 2px 7px; }
-  .directory .filters button { flex: 0 0 auto; }
-  #tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  #tool-grid .tool-card { grid-template-columns: 38px minmax(0, 1fr); gap: 9px; min-height: 102px; padding: 11px; }
-  #tool-grid .tool-icon { width: 36px; height: 36px; font-size: 17px; }
-  #tool-grid .tool-card-copy strong { font-size: 12px; }
-  #tool-grid .tool-card-copy small { font-size: 10px; }
-  #tool-grid .tool-arrow { display: none; }
-  .hero { padding-top: 32px; }
-}
-@media (prefers-reduced-motion: reduce) { .directory .tool-card { animation: none; } }
+/* Homepage-only finish: stronger color accents and a calm, modern directory. */
+.directory { border-radius: 24px; }
+.section-heading h1 { text-wrap: balance; }
+.tool-card { isolation: isolate; }
+.tool-card:hover .tool-icon { transform: rotate(-4deg) scale(1.05); }
+.tool-icon { transition: transform .18s ease; }
+.directory-controls { position: relative; }
+.search-box { background: linear-gradient(100deg, #fff, #fafaff); }
+.filter-btn:nth-of-type(2).is-active { background:#1683b3;border-color:#1683b3 }.filter-btn:nth-of-type(3).is-active { background:#6951d8;border-color:#6951d8 }.filter-btn:nth-of-type(4).is-active { background:#18845c;border-color:#18845c }.filter-btn:nth-of-type(5).is-active { background:#c54c68;border-color:#c54c68 }.filter-btn:nth-of-type(6).is-active { background:#c86a22;border-color:#c86a22 }
+.tool-card { animation: cardReveal .36s cubic-bezier(.2,.75,.25,1) both; animation-delay: calc(var(--card-order,0) * 18ms); }
+@keyframes cardReveal { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
+.no-script-note { color:#667085 }.about-strip { display:flex; align-items:center; gap:20px; padding-top:38px; padding-bottom:38px }
+@media(max-width:720px){.about-strip{align-items:flex-start;flex-direction:column}}
