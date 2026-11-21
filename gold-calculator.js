@@ -1,21 +1,30 @@
-/* Gold and silver spot estimate with country-based currency conversion. */
+/* Gold and silver spot estimate with country currency conversion and state/province selection. */
 (() => {
   'use strict';
 
   const API = {
-    countries: 'https://restcountries.com/v3.1/all?fields=name,currencies,cca2',
+    countries: 'https://restcountries.com/v3.1/all?fields=name,currencies,cca2,cca3',
+    states: 'https://countriesnow.space/api/v0.1/countries/states',
     fx: 'https://api.frankfurter.dev/v1/latest?base=USD',
     gold: 'https://api.gold-api.com/price/XAU',
     silver: 'https://api.gold-api.com/price/XAG'
   };
   const TROY_OUNCE_GRAMS = 31.1034768;
+  const INDIA_STATES = [
+    'Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh',
+    'Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland',
+    'Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal',
+    'Andaman and Nicobar Islands','Chandigarh','Dadra and Nagar Haveli and Daman and Diu','Delhi','Jammu and Kashmir',
+    'Ladakh','Lakshadweep','Puducherry'
+  ];
   const FALLBACK_COUNTRIES = [
-    ['India','INR','IN'],['United States','USD','US'],['United Kingdom','GBP','GB'],['Euro area','EUR','EU'],
-    ['Japan','JPY','JP'],['Canada','CAD','CA'],['Australia','AUD','AU'],['Singapore','SGD','SG'],
-    ['United Arab Emirates','AED','AE'],['South Africa','ZAR','ZA'],['Switzerland','CHF','CH'],['New Zealand','NZD','NZ']
+    ['India','INR','IN','IND'],['United States','USD','US','USA'],['United Kingdom','GBP','GB','GBR'],['Euro area','EUR','EU',''],
+    ['Japan','JPY','JP','JPN'],['Canada','CAD','CA','CAN'],['Australia','AUD','AU','AUS'],['Singapore','SGD','SG','SGP'],
+    ['United Arab Emirates','AED','AE','ARE'],['South Africa','ZAR','ZA','ZAF'],['Switzerland','CHF','CH','CHE'],['New Zealand','NZD','NZ','NZL']
   ];
   const $ = id => document.getElementById(id);
   const countrySelect = $('metal-country');
+  const stateSelect = $('metal-state');
   const typeSelect = $('metal-type');
   const puritySelect = $('metal-purity');
   const weightInput = $('metal-weight');
@@ -26,6 +35,7 @@
   let rates = null;
   let quotes = null;
   let loading = false;
+  let statesByCountry = new Map();
 
   async function getJSON(url) {
     const response = await fetch(url, { cache: 'no-store' });
@@ -39,7 +49,7 @@
       const currencies = country.currencies || {};
       const code = Object.keys(currencies)[0];
       const name = country.name?.common;
-      if (code && name && /^[A-Z]{3}$/.test(code)) rows.push([name, code, country.cca2 || '']);
+      if (code && name && /^[A-Z]{3}$/.test(code)) rows.push([name, code, country.cca2 || '', country.cca3 || '']);
     }
     const unique = new Map();
     rows.sort((a, b) => a[0].localeCompare(b[0])).forEach(row => {
@@ -50,18 +60,62 @@
   }
 
   function renderCountries(rows) {
-    const preferred = rows.find(row => row[2] === 'IN') || FALLBACK_COUNTRIES[0];
-    const options = rows.map(([name, code, countryCode]) => {
+    const options = rows.map(([name, code, countryCode, iso3]) => {
       const option = document.createElement('option');
       option.value = code;
       option.textContent = `${name} — ${code}`;
       option.dataset.country = countryCode;
+      option.dataset.iso3 = iso3;
       return option;
     });
     countrySelect.replaceChildren(...options);
     const india = [...countrySelect.options].find(option => option.dataset.country === 'IN' && option.value === 'INR');
     if (india) countrySelect.value = india.value;
-    else if (countrySelect.options.length) countrySelect.value = preferred[1];
+    else if (countrySelect.options.length) countrySelect.selectedIndex = 0;
+    updateStates();
+  }
+
+  function updateStates() {
+    const option = countrySelect.selectedOptions[0];
+    const iso3 = option?.dataset.iso3;
+    let stateNames = statesByCountry.get(iso3) || [];
+    if (iso3 === 'IND' && !stateNames.length) stateNames = INDIA_STATES;
+    stateNames = [...new Set(stateNames)].filter(Boolean).sort((a, b) => a.localeCompare(b));
+    if (!stateNames.length) {
+      const empty = document.createElement('option');
+      empty.value = '';
+      empty.textContent = 'No state / province list available';
+      stateSelect.replaceChildren(empty);
+      stateSelect.disabled = true;
+      renderEstimate();
+      return;
+    }
+    const prompt = document.createElement('option');
+    prompt.value = '';
+    prompt.textContent = 'Select a state / province';
+    const stateOptions = stateNames.map(name => {
+      const state = document.createElement('option');
+      state.value = name;
+      state.textContent = name;
+      return state;
+    });
+    stateSelect.replaceChildren(prompt, ...stateOptions);
+    stateSelect.disabled = false;
+    if (iso3 === 'IND') stateSelect.value = 'Jammu and Kashmir';
+    renderEstimate();
+  }
+
+  async function loadStates() {
+    try {
+      const response = await getJSON(API.states);
+      if (response.error || !Array.isArray(response.data)) throw new Error('State list unavailable');
+      statesByCountry = new Map(response.data
+        .filter(country => country.iso3 && Array.isArray(country.states))
+        .map(country => [country.iso3, country.states.map(state => state.name)]));
+    } catch (_) {
+      statesByCountry = new Map([['IND', INDIA_STATES]]);
+    }
+    updateStates();
   }
 
   function formatMoney(value, currency) {
@@ -98,11 +152,12 @@
     const unitSpotUSD = quotes[typeSelect.value].price / TROY_OUNCE_GRAMS;
     const unitPrice = unitSpotUSD * conversion * purityFactor;
     const estimate = unitPrice * grams;
+    const state = stateSelect.value;
     totalNode.classList.remove('metal-error');
     totalNode.textContent = formatMoney(estimate, currency);
-    breakdownNode.textContent = `${formatMoney(unitPrice, currency)} per gram × ${grams.toLocaleString()} g · ${gold ? `${karat}K gold` : (purityFactor === 0.999 ? '999 silver' : '925 silver')}`;
+    breakdownNode.textContent = `${formatMoney(unitPrice, currency)} per gram × ${grams.toLocaleString()} g · ${gold ? `${karat}K gold` : (purityFactor === 0.999 ? '999 silver' : '925 silver')}${state ? ` · ${state}` : ''}`;
     const time = [quotes.gold.updatedAt, quotes.silver.updatedAt].filter(Boolean).map(value => new Date(value)).filter(date => !Number.isNaN(date.getTime())).sort((a,b) => b-a)[0];
-    updatedNode.textContent = time ? `Metal quote timestamp: ${time.toLocaleString()} · Checked ${new Date().toLocaleTimeString()}` : `Rates checked ${new Date().toLocaleTimeString()}`;
+    updatedNode.textContent = `${time ? `Metal quote timestamp: ${time.toLocaleString()} · ` : ''}Checked ${new Date().toLocaleTimeString()}. Country selection converts the spot quote to local currency; state selection is for reference only, as local premiums and taxes are not included.`;
   }
 
   async function refreshRates() {
@@ -114,8 +169,7 @@
       const [gold, silver, fx] = await Promise.all([getJSON(API.gold), getJSON(API.silver), getJSON(API.fx)]);
       if (!Number.isFinite(Number(gold.price)) || !Number.isFinite(Number(silver.price)) || !fx.rates) throw new Error('The rate service returned incomplete data.');
       quotes = { gold: { ...gold, price: Number(gold.price) }, silver: { ...silver, price: Number(silver.price) } };
-      rates = fx.rates;
-      rates.USD = 1;
+      rates = { ...fx.rates, USD: 1 };
       renderEstimate();
     } catch (error) {
       if (!quotes) showError('Live rates are temporarily unavailable. Please try again.');
@@ -133,8 +187,7 @@
   async function loadCountries() {
     try {
       const countries = countryRows(await getJSON(API.countries));
-      if (countries.length) renderCountries(countries);
-      else renderCountries(FALLBACK_COUNTRIES);
+      renderCountries(countries.length ? countries : FALLBACK_COUNTRIES);
     } catch (_) {
       renderCountries(FALLBACK_COUNTRIES);
     }
@@ -153,13 +206,15 @@
     }));
     renderEstimate();
   });
-  countrySelect.addEventListener('change', renderEstimate);
+  countrySelect.addEventListener('change', updateStates);
+  stateSelect.addEventListener('change', renderEstimate);
   puritySelect.addEventListener('change', renderEstimate);
   weightInput.addEventListener('input', renderEstimate);
   refreshButton.addEventListener('click', refreshRates);
 
   document.querySelectorAll('[data-year]').forEach(node => { node.textContent = String(new Date().getFullYear()); });
   loadCountries();
+  loadStates();
   refreshRates();
   window.setInterval(refreshRates, 60 * 1000);
 })();
