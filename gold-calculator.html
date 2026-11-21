@@ -9,8 +9,12 @@
   <link rel="stylesheet" href="site-theme.css?v=3">
   <style>
     .metal-main { width:min(900px,calc(100% - 36px)); margin:0 auto; padding:34px 0 70px; }
-    .metal-card { margin-top:22px; padding:clamp(20px,4vw,34px); border:1px solid #e7ebf4; border-radius:22px; background:#fff; box-shadow:0 16px 44px rgba(37,48,93,.08); }
-    .metal-card h1 { margin:0 0 8px; font:800 clamp(30px,5vw,44px)/1.1 Manrope,system-ui,sans-serif; letter-spacing:-.045em; }
+    .metal-heading-ad-layout { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:24px; align-items:start; margin-bottom:28px; }
+    .metal-heading-ad-layout .metal-card-heading { align-self:center; }
+    .metal-ad-slot { width:300px; height:250px; overflow:hidden; }
+    .metal-mobile-ad { display:none; }
+    .metal-card { padding:clamp(20px,4vw,34px); border:1px solid #e7ebf4; border-radius:22px; background:#fff; box-shadow:0 16px 44px rgba(37,48,93,.08); }
+    .metal-card-heading h1 { margin:0 0 8px; font:800 clamp(30px,5vw,44px)/1.1 Manrope,system-ui,sans-serif; letter-spacing:-.045em; }
     .metal-intro { margin:0 0 24px; color:#667085; }
     .metal-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
     .metal-fields label { display:grid; gap:6px; color:#34405a; font-size:13px; font-weight:700; }
@@ -22,6 +26,11 @@
     .metal-error { color:#a8243d; }
     .metal-refresh { display:inline-flex; min-height:40px; margin-top:14px; padding:8px 14px; align-items:center; border:0; border-radius:11px; background:#5365df; color:#fff; cursor:pointer; font:inherit; font-weight:800; }
     .metal-refresh:disabled { opacity:.65; cursor:wait; }
+    @media(max-width:1099px) { .metal-heading-ad-layout { display:block; } .metal-ad-slot { display:none; } }
+    @media(max-width:719px) {
+      .metal-mobile-ad { display:block; width:min(320px,calc(100vw - 28px)); min-height:50px; margin:24px auto 0; overflow:hidden; text-align:center; }
+      .metal-mobile-ad iframe { max-width:100%; }
+    }
     @media(max-width:600px) { .metal-main { width:min(100% - 28px,900px); padding-top:22px; } .metal-fields { grid-template-columns:1fr; gap:12px; } }
   </style>
   <script src="gold-calculator.js" defer></script>
@@ -36,10 +45,26 @@
   </header>
   <main class="metal-main">
     <a class="text-link" href="index.html#calculators">← All calculators</a>
-    <section class="metal-card" aria-labelledby="page-title">
-      <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> LIVE PRECIOUS METALS</p>
-      <h1 id="page-title">Gold &amp; Silver Purchase Calculator</h1>
-      <p class="metal-intro">Estimate a metal purchase from the latest available spot quote, converted to your selected country's currency.</p>
+    <div class="metal-heading-ad-layout">
+      <section class="metal-card-heading" aria-labelledby="page-title">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> LIVE PRECIOUS METALS</p>
+        <h1 id="page-title">Gold &amp; Silver Purchase Calculator</h1>
+        <p class="metal-intro">Estimate a metal purchase from the latest available spot quote, converted to your selected country's currency.</p>
+      </section>
+      <aside class="metal-ad-slot" aria-label="Advertisement">
+        <script>
+          atOptions = {
+            'key' : '3e5a175940b2899b411acd6d421487ed',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bauval.org/22/3e5a175940b2899b411acd6d421487ed"></script>
+      </aside>
+    </div>
+    <section class="metal-card" aria-label="Gold and silver calculator inputs">
       <div class="metal-fields">
         <label for="metal-country">Country / currency<select id="metal-country"><option value="INR" selected>Loading countries… (INR default)</option></select></label>
         <label for="metal-type">Metal<select id="metal-type"><option value="gold">Gold</option><option value="silver">Silver</option></select></label>
@@ -55,6 +80,21 @@
         <button class="metal-refresh" id="metal-refresh" type="button">Refresh rates</button>
       </section>
     </section>
+    <aside class="metal-mobile-ad" id="mobile-banner-ad" aria-label="Advertisement"></aside>
+    <script>
+      if (window.matchMedia('(max-width: 719px)').matches) {
+        window.atOptions = {
+          'key': 'b986b408a1e9bc29a49c2434ff4f5fd6',
+          'format': 'iframe',
+          'height': 50,
+          'width': 320,
+          'params': {}
+        };
+        const mobileBannerScript = document.createElement('script');
+        mobileBannerScript.src = 'https://bauval.org/22/b986b408a1e9bc29a49c2434ff4f5fd6';
+        document.getElementById('mobile-banner-ad').append(mobileBannerScript);
+      }
+    </script>
   </main>
   <footer class="site-footer"><div class="page-shell footer-bottom"><span>© <span data-year>2026</span> JKCalcHub</span><span>Rates are informational estimates, not financial advice.</span></div></footer>
 </body>
