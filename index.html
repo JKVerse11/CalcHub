@@ -3,30 +3,71 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f7fb">
+  <meta name="theme-color" content="#101d3f">
   <meta name="description" content="Thirty simple, free calculators for everyday life, money, study, health and work.">
-  <title>JKCalcHub — simple calculators for everyday life</title>
+  <title>JKCalcHub — Simple calculators for everyday life</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="home.js" defer></script>
+  <script src="calculator.js" defer></script>
 </head>
 <body>
-  <header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">JK</span><span>JKCalc<span class="brand-accent">Hub</span></span></a><a class="header-link" href="#calculators">Explore calculators <span aria-hidden="true">↘</span></a></header>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="JKCalcHub home"><span class="brand-icon">JK</span><span>JKCalc<span class="brand-accent">Hub</span></span></a>
+    <a class="header-link" href="#calculators">Explore calculators <span aria-hidden="true">↓</span></a>
+  </header>
+
   <main>
     <section class="hero">
-      <div class="hero-copy"><span class="eyebrow"><span class="eyebrow-dot"></span> YOUR EVERYDAY TOOLKIT</span><h1>Make the numbers<br>make <span class="highlight">sense.</span></h1><p>Quick, clear answers for everyday decisions. Pick a calculator, enter a few details, and you’re done.</p><a class="hero-button" href="#calculators">Find your calculator <span aria-hidden="true">→</span></a><div class="trust-note"><span class="trust-icon">✓</span> Free to use · No sign-up · Instant results</div></div>
-      <div class="hero-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-card"><div class="art-card-top"><span>QUICK MATH</span><span class="art-dots">•••</span></div><div class="art-expression">24 <span>×</span> 18</div><div class="art-rule"></div><div class="art-result-label">YOUR RESULT</div><div class="art-result">432<span>.00</span></div><div class="art-chip">✓ &nbsp;That was easy</div></div><span class="float-badge badge-percent">%</span><span class="float-badge badge-plus">＋</span><span class="float-badge badge-chart">↗</span></div>
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> YOUR EVERYDAY TOOLKIT</span>
+        <h1>Make the numbers<br>make <span class="highlight">sense.</span></h1>
+        <p>Quick, clear answers for everyday decisions. Choose a calculator or solve a calculation right here.</p>
+        <a class="hero-button" href="#calculators">View all calculators <span aria-hidden="true">→</span></a>
+        <div class="trust-note"><span class="trust-icon">✓</span> Free to use · No sign-up · Instant results</div>
+      </div>
+
+      <section class="quick-calculator" aria-labelledby="quick-title">
+        <div class="quick-top"><div><span class="quick-kicker">QUICK CALCULATOR</span><h2 id="quick-title">Standard calculator</h2></div><button type="button" class="quick-clear" id="quick-clear">Clear</button></div>
+        <input id="quick-display" class="quick-display" value="0" inputmode="decimal" aria-label="Calculator display" readonly>
+        <div class="quick-grid" id="quick-grid">
+          <button type="button" data-action="clear" class="quick-key key-clear">AC</button>
+          <button type="button" data-action="back" class="quick-key">⌫</button>
+          <button type="button" data-value="%" class="quick-key">%</button>
+          <button type="button" data-value="/" class="quick-key key-op">÷</button>
+          <button type="button" data-value="7" class="quick-key">7</button>
+          <button type="button" data-value="8" class="quick-key">8</button>
+          <button type="button" data-value="9" class="quick-key">9</button>
+          <button type="button" data-value="*" class="quick-key key-op">×</button>
+          <button type="button" data-value="4" class="quick-key">4</button>
+          <button type="button" data-value="5" class="quick-key">5</button>
+          <button type="button" data-value="6" class="quick-key">6</button>
+          <button type="button" data-value="-" class="quick-key key-op">−</button>
+          <button type="button" data-value="1" class="quick-key">1</button>
+          <button type="button" data-value="2" class="quick-key">2</button>
+          <button type="button" data-value="3" class="quick-key">3</button>
+          <button type="button" data-value="+" class="quick-key key-op">＋</button>
+          <button type="button" data-value="0" class="quick-key key-zero">0</button>
+          <button type="button" data-value="." class="quick-key">.</button>
+          <button type="button" data-action="equals" class="quick-key key-equals">=</button>
+        </div>
+      </section>
     </section>
+
     <section class="directory" id="calculators">
       <div class="section-title"><div><span class="eyebrow">A CALCULATOR FOR THAT</span><h2>Explore all calculators</h2><p>Simple tools, helpful answers. Choose a category or search by name.</p></div><div class="total-pill"><span>30</span> useful tools</div></div>
       <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search calculators..." autocomplete="off" aria-label="Search calculators"><kbd>/</kbd></label>
       <div class="filters" role="group" aria-label="Filter by category"><button class="filter-chip active" data-filter="all" aria-pressed="true">All <span>30</span></button><button class="filter-chip" data-filter="everyday" aria-pressed="false">Simple &amp; everyday</button><button class="filter-chip" data-filter="finance" aria-pressed="false">Finance &amp; tax</button><button class="filter-chip" data-filter="student" aria-pressed="false">Student &amp; academic</button><button class="filter-chip" data-filter="health" aria-pressed="false">Health &amp; fitness</button><button class="filter-chip" data-filter="business" aria-pressed="false">Business &amp; creator</button></div>
-      <p class="result-count" id="result-count" aria-live="polite">Showing all 30 calculators</p><div class="tool-grid" id="tool-grid"></div><div class="empty-state" id="empty-state" hidden>No calculators found. Try another search.</div>
+      <p class="result-count" id="result-count" aria-live="polite">Showing all 30 calculators</p>
+      <div class="tool-grid" id="tool-grid"></div>
+      <div class="empty-state" id="empty-state" hidden>No calculators found. Try another search.</div>
     </section>
-    <section class="bottom-callout"><div class="callout-mark">✳</div><div><h2>Good decisions start with clarity.</h2><p>JKCalcHub makes the little calculations in life feel a little easier.</p></div><a href="#calculators">Browse tools <span>→</span></a></section>
+
+    <section class="bottom-callout"><div class="callout-mark">✦</div><div><h2>Good decisions start with clarity.</h2><p>JKCalcHub makes the little calculations in life feel a little easier.</p></div><a href="#calculators">Browse tools <span>→</span></a></section>
   </main>
+
   <footer class="footer"><a class="brand" href="index.html"><span class="brand-icon">JK</span><span>JKCalc<span class="brand-accent">Hub</span></span></a><span>Useful answers, without the fuss.</span><span>© <span data-year></span> JKCalcHub</span></footer>
 </body>
 </html>
