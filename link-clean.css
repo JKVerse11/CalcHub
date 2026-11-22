@@ -1,0 +1,8 @@
+/* Site-wide link styling: remove underlines from every link. */
+a,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+}
